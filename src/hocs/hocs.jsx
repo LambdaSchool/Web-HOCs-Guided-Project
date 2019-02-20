@@ -14,18 +14,12 @@ function logNumber(num) {
 //   return `This is the wonderful number ${num}`;
 // }
 
-// this higher order function takes a function and returns "improved" function
-// without messing with the internals of the function
-function withImprovement(func) {
-  return function improved(num) {
-    return `This is the wonderful ${func(num)}`;
-  };
-}
-
 function greet(name) {
   return `Hello, ${name}`;
 }
 
+// this higher order function takes a function and returns "improved" function
+// without messing with the internals of the function
 function improver(func) {
   return function improvedFunc(name) {
     return func(name).toUpperCase();
