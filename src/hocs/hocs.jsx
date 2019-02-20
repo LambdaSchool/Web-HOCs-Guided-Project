@@ -73,5 +73,42 @@ export function withCounter(Component) {
 }
 
 export function withAuthCheck(Component) {
+  return class WithAuthCheck extends React.Component {
+    state = {
+      isAuthed: false,
+    }
 
+    logIn = () => {
+      localStorage.setItem('isAuthed', 'true');
+      this.setState({ isAuthed: true });
+    }
+
+    logOut = () => {
+      localStorage.clear('isAuthed');
+      this.setState({ isAuthed: false });
+    }
+
+    componentDidMount() {
+      const isAuthed = !!localStorage.getItem('isAuthed');
+      this.setState({ isAuthed });
+    }
+
+    componentDidUpdate() {
+      const isAuthed = !!localStorage.getItem('isAuthed');
+      if (this.state.isAuthed !== isAuthed) {
+        this.setState({ isAuthed });
+      }
+    }
+
+    render() {
+      if (!this.state.isAuthed) {
+        return <button onClick={this.logIn}>LOG IN, PLEASE</button>;
+      }
+      return <Component
+        {...this.props}
+        isAuthed={this.state.isAuthed}
+        logOut={this.logOut}
+      />;
+    }
+  };
 }

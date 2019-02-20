@@ -6,6 +6,7 @@ export default function Container({
   count,
   increment,
   decrement,
+  logOut,
 }) {
   // stateful logic here
   return (
@@ -17,6 +18,10 @@ export default function Container({
 
       <button onClick={increment}>increment</button>
       <button onClick={decrement}>decrement</button>
+
+      <br />
+
+      <button onClick={logOut}>LOG OUT</button>
     </div>
   );
 }
