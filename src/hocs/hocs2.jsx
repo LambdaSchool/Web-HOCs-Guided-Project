@@ -66,7 +66,7 @@ export function withCounter(Component, changeBy = 1, Error) {
     }
 
     render() {
-      if (false) {
+      if (false) { // something that makes sense
         return <Error />;
       }
       return (
