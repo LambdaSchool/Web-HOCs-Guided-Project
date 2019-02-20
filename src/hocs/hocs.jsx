@@ -28,7 +28,7 @@ function greet(name) {
 
 function improver(func) {
   return function improvedFunc(name) {
-    return `${func(name).toUpperCase()}`;
+    return func(name).toUpperCase();
   };
 }
 
