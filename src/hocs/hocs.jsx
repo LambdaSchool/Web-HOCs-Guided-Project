@@ -52,7 +52,30 @@ export function withMagicProp(Component) {
 }
 
 export function withCounter(Component) {
+  return class WithCounter extends React.Component {
+    state = {
+      currentCount: 0,
+    }
 
+    increment = () => {
+      this.setState(st => ({ currentCount: st.currentCount + 1 }));
+    }
+
+    decrement = () => {
+      this.setState(st => ({ currentCount: st.currentCount - 1 }));
+    }
+
+    render() {
+      return (
+        <Component
+          {...this.props}
+          count={this.state.currentCount}
+          increment={this.increment}
+          decrement={this.decrement}
+        />
+      );
+    }
+  };
 }
 
 export function withAuthCheck(Component) {
