@@ -10,9 +10,14 @@ import React from 'react';
 // 3- edit App.jsx to wrap Container with the HOC.
 
 export function withTimestamp(Component) {
-  // implement
+  return class ComponentWithTimestamp extends React.Component {
+    render() {
+      return (
+        <Component {...this.props} timestamp="timestamp" />
+      );
+    }
+  };
 }
-
 
 // ================================================================ Exercise B
 

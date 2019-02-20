@@ -1,9 +1,9 @@
 import React from 'react';
 
-export default function Container({ magic }) {
+export default function Container({ magic, timestamp }) {
   return (
     <div className='container'>
-      Hello, World {magic}
+      Hello, World {magic} {timestamp}
     </div>
   );
 }
