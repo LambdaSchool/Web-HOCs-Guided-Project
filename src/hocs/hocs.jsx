@@ -33,7 +33,7 @@ console.log(improved(12));
 // 1- implement a greet function
 console.log(greet('Tom')); // -> Hello, Tom
 // 2- implement an improver called withShouting
-const improvedGreet = improver(greet);
+const improvedGreet = withShouting(greet);
 console.log(improvedGreet('Tom')); // -> HELLO, TOM
 
 
