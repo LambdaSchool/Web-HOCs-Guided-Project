@@ -9,9 +9,9 @@ const Error = () => error;
 
 const Meh = Container;
 const Improved = studentHocs.withCounter(
-  studentHocs.withTimestamp(teacherHocs.withMagicProp(Meh)),
-  2,
-  Error,
+  studentHocs.withTimestamp(teacherHocs.withMagicProp(Meh)), // comp to improve
+  2, // by how much should the counter increment
+  Error, // used for errors
 );
 
 ReactDOM.render(
