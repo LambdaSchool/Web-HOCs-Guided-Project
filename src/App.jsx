@@ -6,10 +6,9 @@ import * as studentHocs from './hocs/hocs2';
 
 
 const Meh = Container;
-const Improved = studentHocs.withTimestamp(
-  teacherHocs.withMagicProp(Meh),
-);
+const Improved = teacherHocs.withCounter(studentHocs.withTimestamp(teacherHocs.withMagicProp(Meh)));
 
 ReactDOM.render(
-  <Improved dontLoseMe='6' />, document.querySelector('#target1'),
+  <Improved dontLoseMe='6' />,
+  document.querySelector('#target1'),
 );

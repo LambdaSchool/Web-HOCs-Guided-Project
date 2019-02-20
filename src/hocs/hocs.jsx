@@ -51,6 +51,10 @@ export function withMagicProp(Component) {
   };
 }
 
+export function withCounter(Component) {
+
+}
+
 export function withAuthCheck(Component) {
 
 }
