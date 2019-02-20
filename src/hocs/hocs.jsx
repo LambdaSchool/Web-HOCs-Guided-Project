@@ -14,7 +14,7 @@ function logNumber(num) {
 //   return `This is the wonderful number ${num}`;
 // }
 
-// HOC takes function and returns "improved" function
+// this higher order function takes a function and returns "improved" function
 // without messing with the internals of the function
 function withImprovement(func) {
   return function improved(num) {
@@ -28,6 +28,14 @@ const improved = withImprovement(meh);
 
 console.log(meh(12));
 console.log(improved(12));
+
+
+// 1- implement a greet function
+console.log(greet('Tom')); // -> Hello, Tom
+// 2- implment an improver called withShouting
+const improvedGreet = improver(greet);
+console.log(improvedGreet('Tom')); // -> HELLO, TOM
+
 
 export function withMagicProp(Component) {
 
