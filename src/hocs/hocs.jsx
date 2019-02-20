@@ -22,20 +22,22 @@ function withImprovement(func) {
   };
 }
 
+function greet(name) {
+  return `Hello, ${name}`;
+}
+
+function improver(func) {
+  return function improvedFunc(name) {
+    return `${func(name).toUpperCase()}`;
+  };
+}
+
 // log the meh and the improved:
-const meh = logNumber;
-const improved = withImprovement(meh);
+const meh = greet;
+const improved = improver(meh);
 
-console.log(meh(12));
-console.log(improved(12));
-
-
-// 1- implement a greet function
-console.log(greet('Tom')); // -> Hello, Tom
-// 2- implement an improver called withShouting
-const improvedGreet = withShouting(greet);
-console.log(improvedGreet('Tom')); // -> HELLO, TOM
-
+console.log(meh('Tom'));
+console.log(improved('Josh'));
 
 export function withMagicProp(Component) {
 
