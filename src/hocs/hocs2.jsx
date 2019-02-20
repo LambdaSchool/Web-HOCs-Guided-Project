@@ -46,6 +46,37 @@ export function withRandomNumberGenerator(Component) {
 
 // 3- edit App.jsx to wrap Container with the HOC.
 
-export function withCounter(Component) {
+export function withCounter(Component, changeBy = 1, Error) {
   // implement
+  return class WithCounter extends React.Component {
+    state = {
+      count: 0,
+    }
+
+    increment = () => {
+      this.setState(
+        currentState => ({ count: currentState.count + changeBy }),
+      );
+    }
+
+    decrement = () => {
+      this.setState(
+        currentState => ({ count: currentState.count - changeBy }),
+      );
+    }
+
+    render() {
+      if (false) {
+        return <Error />;
+      }
+      return (
+        <Component
+          {...this.props}
+          count={this.state.count}
+          increment={this.increment}
+          decrement={this.decrement}
+        />
+      );
+    }
+  };
 }

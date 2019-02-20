@@ -65,7 +65,7 @@ export function withCounter(Component) {
       this.setState(st => ({ currentCount: st.currentCount - 1 }));
     }
 
-    render() {
+    render(/* no */) {
       return (
         <Component
           {...this.props}

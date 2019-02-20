@@ -4,9 +4,15 @@ import Container from './components/Container';
 import * as teacherHocs from './hocs/hocs';
 import * as studentHocs from './hocs/hocs2';
 
+const error = <div>this is an error</div>;
+const Error = () => error;
 
 const Meh = Container;
-const Improved = teacherHocs.withCounter(studentHocs.withTimestamp(teacherHocs.withMagicProp(Meh)));
+const Improved = studentHocs.withCounter(
+  studentHocs.withTimestamp(teacherHocs.withMagicProp(Meh)),
+  2,
+  Error,
+);
 
 ReactDOM.render(
   <Improved dontLoseMe='6' />,
