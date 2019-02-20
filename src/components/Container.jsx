@@ -1,5 +1,4 @@
 import React from 'react';
-import { string } from 'prop-types';
 
 export default function Container({ magic }) {
   return (
@@ -8,7 +7,3 @@ export default function Container({ magic }) {
     </div>
   );
 }
-
-Container.propTypes = {
-  magic: string.isRequired,
-};
