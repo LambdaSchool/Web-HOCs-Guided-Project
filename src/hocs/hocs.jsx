@@ -39,8 +39,16 @@ const improved = improver(meh);
 console.log(meh('Tom'));
 console.log(improved('Josh'));
 
+// we want an extra prop on the component
+// and this prop is just the string 'magic'
 export function withMagicProp(Component) {
-
+  return class WithMagicProp extends React.Component {
+    render() {
+      return (
+        <Component magic="magic" />
+      );
+    }
+  };
 }
 
 export function withAuthCheck(Component) {
