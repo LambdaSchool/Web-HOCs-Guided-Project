@@ -45,7 +45,7 @@ export function withMagicProp(Component) {
   return class WithMagicProp extends React.Component {
     render() {
       return (
-        <Component magic="magic" />
+        <Component {...this.props} magic="magic" />
       );
     }
   };
