@@ -8,7 +8,6 @@ export default function Container({
   decrement,
   logOut,
 }) {
-  // stateful logic here
   return (
     <div className='container'>
       <h5>Hello, World</h5>
