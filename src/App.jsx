@@ -5,8 +5,7 @@ import * as teacherHocs from './hocs/hocs';
 import * as studentHocs from './hocs/hocs2';
 
 
-const WrappedContainer = Container;
 
 ReactDOM.render(
-  <WrappedContainer />, document.querySelector('#target1'),
+  <Container />, document.querySelector('#target1'),
 );
