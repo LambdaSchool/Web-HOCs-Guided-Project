@@ -6,6 +6,7 @@ class MySadComponent extends React.Component {
   render() {
     return (
       <div>
+        Sad?
         {/* normal prop that comes from parent */}
         <h3>{this.props.heading}</h3>
 
@@ -17,16 +18,20 @@ class MySadComponent extends React.Component {
 }
 
 function injectIsAuthedProp(Component) {
-  // impplement the HOC
-  // check local storage looking for an auth token
-  return Component // with the extra prop
+  return class extends React.Component {
+    render() {
+      return (
+        <Component {...this.props} />
+      );
+    }
+  };
 }
 
 const EnrichedSadComponent = injectIsAuthedProp(MySadComponent);
 
 
 render(
-  <EnrichedSadComponent heading="Very important" />,
+  <EnrichedSadComponent heading="partly" />,
   document.querySelector('#target1'),
 );
 
