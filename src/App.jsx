@@ -11,10 +11,17 @@ class MySadComponent extends React.Component {
         <h3>{this.props.heading}</h3>
 
         {/* the extra prop which will be injected by a HOC */}
-        <span>{this.props.isAuthed}</span>
+        <div>{this.props.isAuthed}</div>
 
         {/* another extra prop which will be injected by another HOC */}
-        <span>{this.props.timestamp}</span>
+        <div>{this.props.timestamp}</div>
+
+        <br />
+        {/* our sad component should expect three extra props
+        that seem to come out of nowhere */}
+        <div>count: {this.props.count}</div>
+        <button onClick={this.props.increment}>increment</button>
+        <button onClick={this.props.decrement}>decrement</button>
       </div>
     );
   }
@@ -30,7 +37,7 @@ function injectIsAuthedProp(Component) {
   };
 }
 
-const EnrichedSadComponent = withTimestamp(injectIsAuthedProp(MySadComponent));
+const EnrichedSadComponent = withCounter(withTimestamp(injectIsAuthedProp(MySadComponent)));
 
 
 render(
@@ -67,7 +74,6 @@ export function withTimestamp(Component) {
 // that provides the wrapped Component with a `generateRandomNumber` prop
 // which is a function that generates random integers from 0 to 9.
 export function withRandomNumberGenerator(Component) {
-
 }
 
 
@@ -79,7 +85,7 @@ export function withRandomNumberGenerator(Component) {
 //   - an `incremement` which is a function that increments the counter by 1.
 //   - a `decrement` which is a function that decrements the counter by 1.
 export function withCounter(Component) {
-
+  return Component;
 }
 
 
