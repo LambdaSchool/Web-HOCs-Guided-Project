@@ -6,7 +6,10 @@ class MySadComponent extends React.Component {
   render() {
     return (
       <div>
+        {/* normal prop that comes from parent */}
         <h3>{this.props.heading}</h3>
+
+        {/* the extra prop which will be injected by the HOC */}
         <span>{this.props.isAuthed}</span>
       </div>
     );
@@ -23,7 +26,7 @@ const EnrichedSadComponent = injectIsAuthedProp(MySadComponent);
 
 
 render(
-  <EnrichedSadComponent heading="important" />,
+  <EnrichedSadComponent heading="Very important" />,
   document.querySelector('#target1'),
 );
 
