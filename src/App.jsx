@@ -20,9 +20,7 @@ function injectIsAuthedProp(Component) {
 }
 
 const EnrichedSadComponent = injectIsAuthedProp(MySadComponent);
-const Header = injectIsAuthedProp(Header);
-const Footer = injectIsAuthedProp(Footer);
-const Nav = injectIsAuthedProp(Nav);
+
 
 render(
   <EnrichedSadComponent heading="important" />,
