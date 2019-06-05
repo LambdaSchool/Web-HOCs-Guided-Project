@@ -12,6 +12,8 @@ class MySadComponent extends React.Component {
 
         {/* the extra prop which will be injected by the HOC */}
         <span>{this.props.isAuthed}</span>
+
+        <span>{this.props.timestamp}</span>
       </div>
     );
   }
@@ -44,6 +46,10 @@ export function withMagicProp(Component) {
 
 // Build a HOC called `withTimestamp`
 // that provides the wrapped Component with a `timestamp` prop
+
+// create the hoc
+// declare an enriched version of MySadComponent that uses timestamp
+// attach the element to the DOM 
 export function withTimestamp(Component) {
 
 }
