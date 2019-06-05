@@ -21,7 +21,7 @@ function injectIsAuthedProp(Component) {
   return class extends React.Component {
     render() {
       return (
-        <Component {...this.props} />
+        <Component isAuthed='dsafkjakdsjf' {...this.props} />
       );
     }
   };
@@ -31,7 +31,7 @@ const EnrichedSadComponent = injectIsAuthedProp(MySadComponent);
 
 
 render(
-  <EnrichedSadComponent heading="partly" />,
+  <EnrichedSadComponent heading="yessss" />,
   document.querySelector('#target1'),
 );
 
