@@ -29,7 +29,7 @@ function injectIsAuthedProp(Component) {
   };
 }
 
-const EnrichedSadComponent = injectIsAuthedProp(MySadComponent);
+const EnrichedSadComponent = withTimestamp(injectIsAuthedProp(MySadComponent));
 
 
 render(
@@ -51,7 +51,12 @@ export function withMagicProp(Component) {
 // declare an enriched version of MySadComponent that uses timestamp
 // attach the element to the DOM 
 export function withTimestamp(Component) {
-
+  return class extends React.Component {
+    render() {
+      const timestamp = new Date().getTime();
+      return <Component timestamp={timestamp} {...this.props} />;
+    }
+  };
 }
 
 
