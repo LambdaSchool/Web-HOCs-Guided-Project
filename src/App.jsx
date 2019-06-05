@@ -2,36 +2,51 @@ import React from 'react';
 import { render } from 'react-dom';
 
 
-class MySadComponent extends React.Component {
-  render() {
-    return (
-      <div>
-        Sad?
-        {/* normal prop that comes from parent */}
-        <h3>{this.props.heading}</h3>
-
-        {/* the extra prop which will be injected by a HOC */}
-        <div>{this.props.isAuthed}</div>
-
-        {/* another extra prop which will be injected by another HOC */}
-        <div>{this.props.timestamp}</div>
-
-        <br />
-        {/* our sad component should expect three extra props
-        that seem to come out of nowhere */}
-        <div>count: {this.props.count}</div>
-        <button onClick={this.props.increment}>increment</button>
-        <button onClick={this.props.decrement}>decrement</button>
-      </div>
-    );
+function MySadComponent(props) {
+  if (!props.isAuthed) {
+    return <div>Sorry, I can't show you this content</div>;
   }
+  return (
+    <div>
+      Sad?
+      {/* normal prop that comes from parent */}
+      <h3>{props.heading}</h3>
+
+      {/* the extra prop which will be injected by a HOC */}
+      <div>{props.isAuthed}</div>
+
+      {/* another extra prop which will be injected by another HOC */}
+      <div>{props.timestamp}</div>
+
+      <br />
+      {/* our sad component should expect three extra props
+        that seem to come out of nowhere */}
+      <div>count: {props.count}</div>
+      <button onClick={props.increment}>increment</button>
+      <button onClick={props.decrement}>decrement</button>
+    </div>
+  );
 }
 
 function injectIsAuthedProp(Component) {
   return class extends React.Component {
+    state = { isAuthed: false }
+
+    componentDidMount() {
+      const isAuthed = !!localStorage.getItem('isAuthed');
+      this.setState({ isAuthed });
+    }
+
+    componentDidUpdate() {
+      const isAuthed = !!localStorage.getItem('isAuthed');
+      if (this.state.isAuthed !== isAuthed) {
+        this.setState({ isAuthed });
+      }
+    }
+
     render() {
       return (
-        <Component isAuthed='dsafkjakdsjf' {...this.props} />
+        <Component isAuthed={this.state.isAuthed} {...this.props} />
       );
     }
   };
@@ -85,7 +100,38 @@ export function withRandomNumberGenerator(Component) {
 //   - an `incremement` which is a function that increments the counter by 1.
 //   - a `decrement` which is a function that decrements the counter by 1.
 export function withCounter(Component) {
-  return Component;
+  return class extends React.Component {
+    constructor(props) {
+      super(props);
+
+      this.state = {
+        count: 0,
+      };
+    }
+
+    incremement = () => {
+      this.setState(prevState => ({
+        count: prevState.count + 1,
+      }));
+    };
+
+    decrement = () => {
+      this.setState(prevState => ({
+        count: prevState.count - 1,
+      }));
+    };
+
+    render() {
+      return (
+        <Component
+          increment={this.incremement}
+          decrement={this.decrement}
+          count={this.state.count}
+          {...this.props}
+        />
+      );
+    }
+  };
 }
 
 
