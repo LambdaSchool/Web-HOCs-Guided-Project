@@ -10,9 +10,10 @@ class MySadComponent extends React.Component {
         {/* normal prop that comes from parent */}
         <h3>{this.props.heading}</h3>
 
-        {/* the extra prop which will be injected by the HOC */}
+        {/* the extra prop which will be injected by a HOC */}
         <span>{this.props.isAuthed}</span>
 
+        {/* another extra prop which will be injected by another HOC */}
         <span>{this.props.timestamp}</span>
       </div>
     );
