@@ -2,8 +2,30 @@ import React from 'react';
 import { render } from 'react-dom';
 
 
+class MySadComponent extends React.Component {
+  render() {
+    return (
+      <div>
+        <h3>{this.props.heading}</h3>
+        <span>{this.props.isAuthed}</span>
+      </div>
+    );
+  }
+}
+
+function injectIsAuthedProp(Component) {
+  // impplement the HOC
+  // check local storage looking for an auth token
+  return Component // with the extra prop
+}
+
+const EnrichedSadComponent = injectIsAuthedProp(MySadComponent);
+const Header = injectIsAuthedProp(Header);
+const Footer = injectIsAuthedProp(Footer);
+const Nav = injectIsAuthedProp(Nav);
+
 render(
-  <div>Hello World</div>,
+  <EnrichedSadComponent heading="important" />,
   document.querySelector('#target1'),
 );
 
